@@ -1,0 +1,708 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Apex Fitness Studio | Transform Yourself</title>
+
+    <meta name="description"
+          content="Discover your strength at Apex Fitness Studio. Explore memberships, facilities and personal training.">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #10110f;
+            color: #f5f5f0;
+            line-height: 1.6;
+        }
+
+        :root {
+            --green: #c7f36b;
+            --dark: #10110f;
+            --card: #1b1d19;
+            --muted: #a5a79f;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: min(1120px, 90%);
+            margin: auto;
+        }
+
+        /* Navigation */
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: rgba(16, 17, 15, 0.96);
+            border-bottom: 1px solid #292b26;
+        }
+
+        nav {
+            min-height: 76px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 23px;
+            font-weight: 900;
+            letter-spacing: -1px;
+        }
+
+        .logo span {
+            color: var(--green);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            font-size: 14px;
+        }
+
+        .nav-links a:hover {
+            color: var(--green);
+        }
+
+        .button {
+            display: inline-block;
+            padding: 13px 21px;
+            background: var(--green);
+            color: #111;
+            font-weight: bold;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .button:hover {
+            background: #dcffa0;
+            transform: translateY(-2px);
+        }
+
+        /* Hero section */
+
+        .hero {
+            min-height: 590px;
+            display: flex;
+            align-items: center;
+            background:
+                linear-gradient(90deg, #10110f 10%, rgba(16,17,15,.93) 42%, rgba(16,17,15,.2)),
+                url("https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1800&q=85")
+                center 45% / cover;
+        }
+
+        .hero-content {
+            max-width: 680px;
+            padding: 90px 0;
+        }
+
+        .eyebrow {
+            color: var(--green);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 18px;
+        }
+
+        h1 {
+            font-size: clamp(43px, 7vw, 76px);
+            line-height: 1.03;
+            letter-spacing: -3px;
+            margin-bottom: 24px;
+        }
+
+        h1 span {
+            color: var(--green);
+        }
+
+        .hero p {
+            max-width: 500px;
+            color: #c4c6bd;
+            font-size: 17px;
+            margin-bottom: 30px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .button-outline {
+            display: inline-block;
+            padding: 12px 20px;
+            border: 1px solid #77796f;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .button-outline:hover {
+            border-color: var(--green);
+            color: var(--green);
+        }
+
+        /* Stats */
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            border-bottom: 1px solid #292b26;
+            border-top: 1px solid #292b26;
+        }
+
+        .stat {
+            padding: 30px 15px;
+            text-align: center;
+        }
+
+        .stat:not(:last-child) {
+            border-right: 1px solid #292b26;
+        }
+
+        .stat h2 {
+            color: var(--green);
+            font-size: 30px;
+        }
+
+        .stat p {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        /* General sections */
+
+        section.content-section {
+            padding: 85px 0;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 42px;
+        }
+
+        .section-heading h2 {
+            font-size: clamp(30px, 4vw, 44px);
+            letter-spacing: -1px;
+            margin-bottom: 10px;
+        }
+
+        .section-heading p {
+            color: var(--muted);
+        }
+
+        /* Facilities */
+
+        .facility-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .facility-card {
+            background: var(--card);
+            padding: 30px;
+            border: 1px solid #30322b;
+            border-radius: 8px;
+        }
+
+        .facility-icon {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+
+        .facility-card h3 {
+            margin-bottom: 10px;
+        }
+
+        .facility-card p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        /* Membership plans */
+
+        #membership {
+            background: #151713;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            align-items: stretch;
+        }
+
+        .price-card {
+            background: var(--card);
+            border: 1px solid #30322b;
+            border-radius: 8px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .price-card.featured {
+            border: 2px solid var(--green);
+            position: relative;
+        }
+
+        .popular {
+            color: var(--green);
+            font-size: 11px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+
+        .price-card h3 {
+            font-size: 23px;
+            margin-bottom: 8px;
+        }
+
+        .price {
+            font-size: 34px;
+            font-weight: 900;
+            margin: 15px 0;
+        }
+
+        .price span {
+            font-size: 13px;
+            color: var(--muted);
+            font-weight: normal;
+        }
+
+        .price-card ul {
+            list-style: none;
+            margin: 12px 0 25px;
+            flex: 1;
+        }
+
+        .price-card li {
+            color: #d0d1ca;
+            font-size: 14px;
+            margin: 12px 0;
+        }
+
+        .price-card li::before {
+            content: "✓ ";
+            color: var(--green);
+            font-weight: bold;
+        }
+
+        .price-card .button {
+            text-align: center;
+        }
+
+        /* Trainers */
+
+        .trainer-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .trainer-card {
+            min-height: 260px;
+            border-radius: 8px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #292d22, #181a16);
+            display: flex;
+            align-items: end;
+            padding: 28px;
+        }
+
+        .trainer-card h3 {
+            font-size: 23px;
+        }
+
+        .trainer-card p {
+            color: var(--green);
+            font-size: 14px;
+        }
+
+        /* Contact */
+
+        #contact {
+            background: #151713;
+        }
+
+        .contact-box {
+            background: var(--card);
+            border: 1px solid #30322b;
+            border-radius: 10px;
+            padding: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .contact-box h2 {
+            font-size: clamp(26px, 4vw, 38px);
+            margin-bottom: 12px;
+        }
+
+        .contact-box p {
+            color: var(--muted);
+            margin-bottom: 8px;
+        }
+
+        footer {
+            padding: 28px 0;
+            color: var(--muted);
+            font-size: 13px;
+            text-align: center;
+        }
+
+        /* Floating WhatsApp button */
+
+        .whatsapp-float {
+            position: fixed;
+            right: 22px;
+            bottom: 22px;
+            z-index: 20;
+            background: #25d366;
+            color: #082512;
+            border-radius: 50px;
+            padding: 15px 20px;
+            font-size: 14px;
+            font-weight: bold;
+            box-shadow: 0 5px 25px #0008;
+        }
+
+        .whatsapp-float:hover {
+            background: #65ee93;
+        }
+
+        /* Mobile layout */
+
+        @media (max-width: 760px) {
+            .nav-links {
+                gap: 12px;
+                font-size: 12px;
+            }
+
+            .nav-links .nav-contact {
+                display: none;
+            }
+
+            .logo {
+                font-size: 19px;
+            }
+
+            .hero {
+                min-height: 550px;
+                background-position: 58% center;
+            }
+
+            .hero-content {
+                padding: 75px 0;
+            }
+
+            h1 {
+                letter-spacing: -2px;
+            }
+
+            .facility-grid,
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .trainer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-box {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 27px;
+            }
+
+            section.content-section {
+                padding: 60px 0;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .nav-links {
+                gap: 9px;
+            }
+
+            .hero-buttons .button,
+            .hero-buttons .button-outline {
+                text-align: center;
+                width: 100%;
+            }
+
+            .stat h2 {
+                font-size: 23px;
+            }
+
+            .stat p {
+                font-size: 11px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <nav class="container">
+        <a href="#home" class="logo">APEX<span>.</span></a>
+
+        <div class="nav-links">
+            <a href="#facilities">Facilities</a>
+            <a href="#membership">Membership</a>
+            <a href="#trainers">Trainers</a>
+            <a href="#contact" class="nav-contact">Contact</a>
+        </div>
+    </nav>
+</header>
+
+<main>
+
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <div class="eyebrow">Your fitness journey starts here</div>
+
+                <h1>BUILD YOUR<br><span>STRONGER</span><br>SELF.</h1>
+
+                <p>
+                    Train with purpose. Build your strength.
+                    Make every workout count at Apex Fitness Studio.
+                </p>
+
+                <div class="hero-buttons">
+                    <a href="#membership" class="button">Explore Memberships ↗</a>
+                    <a href="#facilities" class="button-outline">Explore Our Gym</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container stats">
+        <div class="stat">
+            <h2>01</h2>
+            <p>Your First Step</p>
+        </div>
+
+        <div class="stat">
+            <h2>100%</h2>
+            <p>Focus On Progress</p>
+        </div>
+
+        <div class="stat">
+            <h2>24/7</h2>
+            <p>Your Goals Matter</p>
+        </div>
+    </section>
+
+    <section class="content-section" id="facilities">
+        <div class="container">
+            <div class="section-heading">
+                <div class="eyebrow">Train without limits</div>
+                <h2>Everything You Need</h2>
+                <p>A space designed to help you work towards your fitness goals.</p>
+            </div>
+
+            <div class="facility-grid">
+                <article class="facility-card">
+                    <div class="facility-icon">🏋️</div>
+                    <h3>Strength Training</h3>
+                    <p>Build your workout routine with a variety of strength-training exercises.</p>
+                </article>
+
+                <article class="facility-card">
+                    <div class="facility-icon">⚡</div>
+                    <h3>Cardio Zone</h3>
+                    <p>Work on your stamina with cardio workouts tailored to your fitness goals.</p>
+                </article>
+
+                <article class="facility-card">
+                    <div class="facility-icon">💪</div>
+                    <h3>Personal Training</h3>
+                    <p>Get guidance and support to make your workouts more structured and effective.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section" id="membership">
+        <div class="container">
+            <div class="section-heading">
+                <div class="eyebrow">Choose your plan</div>
+                <h2>Membership Options</h2>
+                <p>Find a membership that fits your routine.</p>
+            </div>
+
+            <div class="pricing-grid">
+
+                <article class="price-card">
+                    <h3>Monthly</h3>
+                    <p>Great for getting started.</p>
+
+                    <div class="price">₹1,499 <span>/ month</span></div>
+
+                    <ul>
+                        <li>Gym access</li>
+                        <li>Strength equipment</li>
+                        <li>General workout guidance</li>
+                    </ul>
+
+                    <a href="#contact" class="button">Enquire Now</a>
+                </article>
+
+                <article class="price-card featured">
+                    <div class="popular">POPULAR CHOICE</div>
+                    <h3>Quarterly</h3>
+                    <p>Build a consistent routine.</p>
+
+                    <div class="price">₹3,499 <span>/ 3 months</span></div>
+
+                    <ul>
+                        <li>Gym access</li>
+                        <li>Cardio and strength zones</li>
+                        <li>Workout guidance</li>
+                    </ul>
+
+                    <a href="#contact" class="button">Enquire Now</a>
+                </article>
+
+                <article class="price-card">
+                    <h3>Annual</h3>
+                    <p>Commit to your fitness journey.</p>
+
+                    <div class="price">₹9,999 <span>/ year</span></div>
+
+                    <ul>
+                        <li>Gym access</li>
+                        <li>Cardio and strength zones</li>
+                        <li>Priority membership enquiry</li>
+                    </ul>
+
+                    <a href="#contact" class="button">Enquire Now</a>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section" id="trainers">
+        <div class="container">
+            <div class="section-heading">
+                <div class="eyebrow">Your journey, your progress</div>
+                <h2>Training & Guidance</h2>
+                <p>Build better habits with the right support.</p>
+            </div>
+
+            <div class="trainer-grid">
+                <article class="trainer-card">
+                    <div>
+                        <h3>Strength Coaching</h3>
+                        <p>Technique • Training • Progress</p>
+                    </div>
+                </article>
+
+                <article class="trainer-card">
+                    <div>
+                        <h3>Personal Training</h3>
+                        <p>Guidance • Consistency • Goals</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section" id="contact">
+        <div class="container">
+            <div class="contact-box">
+                <div>
+                    <div class="eyebrow">Take the first step</div>
+                    <h2>Ready to Get Started?</h2>
+
+                    <p>Have questions about memberships or training?</p>
+                    <p>Contact our team to learn more.</p>
+                    <p>📍 [Add Gym Address Here]</p>
+                    <p>🕒 [Add Opening Hours Here]</p>
+                </div>
+
+                <a href="#" class="button whatsapp-link">Chat on WhatsApp ↗</a>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <div class="container">
+        © <span id="year"></span> Apex Fitness Studio. Demo website.
+    </div>
+</footer>
+
+<a href="#" class="whatsapp-float whatsapp-link" aria-label="Enquire on WhatsApp">
+    WhatsApp Enquiry ↗
+</a>
+
+<script>
+    // Update the copyright year automatically.
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    /*
+      DEMO SETUP:
+      Replace the placeholder below with the gym's WhatsApp number.
+      Use the country code and number only, without + or spaces.
+      Example format for India: 919876543210
+    */
+
+    const gymWhatsAppNumber = "919876543210";
+
+    document.querySelectorAll(".whatsapp-link").forEach(function (button) {
+        button.addEventListener("click", function (event) {
+            event.preventDefault();
+
+            if (!/^\d{10,15}$/.test(gymWhatsAppNumber)) {
+                alert("Please configure a valid gym WhatsApp number.");
+                return;
+            }
+
+            const message =
+                "Hi! I am interested in Apex Fitness Studio membership. " +
+                "Please share the available plans and details.";
+
+            const whatsappURL =
+                "https://wa.me/" + gymWhatsAppNumber +
+                "?text=" + encodeURIComponent(message);
+
+            window.open(whatsappURL, "_blank", "noopener,noreferrer");
+        });
+    });
+</script>
+
+</body>
+</html>
+```
